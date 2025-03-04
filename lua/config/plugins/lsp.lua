@@ -61,8 +61,10 @@ return {
         }
       }
     end
-    require 'lspconfig'.clangd.setup {
-      on_attach = on_attach
-    }
+    if vim.fn.executable('clangd') == 1 then
+      require 'lspconfig'.clangd.setup {
+        on_attach = on_attach
+      }
+    end
   end
 }
