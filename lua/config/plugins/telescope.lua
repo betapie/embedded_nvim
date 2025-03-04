@@ -12,8 +12,15 @@ return {
           },
         },
         sorting_strategy = 'ascending',
+        layout_strategy = 'horizontal',
         layout_config = {
-          vertical = { width = 0.5 },
+          horizontal = {
+            prompt_position = 'top',
+            preview_width = 0.6,
+            results_width = 0.4,
+          },
+          width = 0.9,
+          height = 0.8,
         },
       }
     }
