@@ -31,7 +31,7 @@ vim.opt.expandtab = true
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
-  float = { border = "rounded" },
+  float = { border = 'rounded' },
 })
 
 require('config.lazy')
@@ -48,9 +48,9 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('i', 'jj', '<Esc>')
 
 -- lua helpers
-vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
-vim.keymap.set("n", "<leader>x", ":.lua<CR>")
-vim.keymap.set("v", "<leader>x", ":lua<CR>")
+vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>')
+vim.keymap.set('n', '<leader>x', ':.lua<CR>')
+vim.keymap.set('v', '<leader>x', ':lua<CR>')
 
 vim.keymap.set('n', ']b', ':bnext<CR>')
 vim.keymap.set('n', '[b', ':bprevious<CR>')

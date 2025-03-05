@@ -22,10 +22,10 @@ local on_attach = function(client, bufnr)
 end
 
 return {
-  "neovim/nvim-lspconfig",
+  'neovim/nvim-lspconfig',
   config = function()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
-    if vim.fn.executable("lua-language-server") == 1 then
+    if vim.fn.executable('lua-language-server') == 1 then
       require 'lspconfig'.lua_ls.setup {
         capabilities = capabilities,
         on_init = function(client)
@@ -47,8 +47,8 @@ return {
               library = {
                 vim.env.VIMRUNTIME,
                 -- Depending on the usage, you might want to add additional paths here.
-                -- "${3rd}/luv/library"
-                -- "${3rd}/busted/library",
+                -- '${3rd}/luv/library'
+                -- '${3rd}/busted/library',
               }
             }
           })

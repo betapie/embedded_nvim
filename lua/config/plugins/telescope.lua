@@ -25,13 +25,13 @@ return {
       }
     }
     local builtin = require('telescope.builtin')
-    vim.keymap.set("n", "<leader>ff", builtin.find_files)
-    vim.keymap.set("n", "<leader>fF", function()
+    vim.keymap.set('n', '<leader>ff', builtin.find_files)
+    vim.keymap.set('n', '<leader>fF', function()
       builtin.find_files { hidden = true }
     end)
-    vim.keymap.set("n", "<leader>fb", builtin.buffers)
-    vim.keymap.set("n", "<leader>fw", builtin.live_grep)
-    vim.keymap.set("n", "<leader>fc", builtin.grep_string)
-    vim.keymap.set("n", "<leader>fr", builtin.lsp_references)
+    vim.keymap.set('n', '<leader>fb', builtin.buffers)
+    vim.keymap.set('n', '<leader>fw', builtin.live_grep)
+    vim.keymap.set('n', '<leader>fc', builtin.grep_string)
+    vim.keymap.set('n', '<leader>fr', builtin.lsp_references)
   end,
 }
