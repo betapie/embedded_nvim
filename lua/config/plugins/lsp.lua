@@ -24,8 +24,10 @@ end
 return {
   "neovim/nvim-lspconfig",
   config = function()
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
     if vim.fn.executable("lua-language-server") == 1 then
       require 'lspconfig'.lua_ls.setup {
+        capabilities = capabilities,
         on_init = function(client)
           if client.workspace_folders then
             local path = client.workspace_folders[1].name
@@ -59,6 +61,7 @@ return {
     end
     if vim.fn.executable('clangd') == 1 then
       require 'lspconfig'.clangd.setup {
+        capabilities = capabilities,
         on_attach = on_attach
       }
     end
