@@ -16,8 +16,8 @@ return {
         layout_config = {
           horizontal = {
             prompt_position = 'top',
-            preview_width = 0.6,
-            results_width = 0.4,
+            preview_width = 0.5,
+            results_width = 0.5,
           },
           width = 0.9,
           height = 0.8,
@@ -33,5 +33,7 @@ return {
     vim.keymap.set('n', '<leader>fw', builtin.live_grep)
     vim.keymap.set('n', '<leader>fc', builtin.grep_string)
     vim.keymap.set('n', '<leader>fr', builtin.lsp_references)
+    vim.keymap.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find)
+    vim.keymap.set('n', '<leader>f<CR>', builtin.resume)
   end,
 }
