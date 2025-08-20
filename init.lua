@@ -55,3 +55,17 @@ vim.keymap.set('v', '<leader>x', ':lua<CR>')
 
 vim.keymap.set('n', '<leader>c', ':bdelete<CR>')
 vim.keymap.set('n', '<leader>bc>', ':bufdo bwipeout')
+
+vim.keymap.set('n', ']q', ':cnext<CR>zz')
+vim.keymap.set('n', '[q', ':cprev<CR>zz')
+vim.keymap.set('n', ']Q', ':clast<CR>zz')
+vim.keymap.set('n', '[Q', ':cfirst<CR>zz')
+vim.keymap.set('n', '<leader>qo', ':copen<CR>')
+vim.keymap.set('n', '<leader>qc', ':cclose<CR>')
+
+vim.keymap.set('n', ']l', ':lnext<CR>zz')
+vim.keymap.set('n', '[l', ':lprev<CR>zz')
+vim.keymap.set('n', ']L', ':llast<CR>zz')
+vim.keymap.set('n', '[L', ':lfirst<CR>zz')
+vim.keymap.set('n', '<leader>lo', ':lopen<CR>')
+vim.keymap.set('n', '<leader>lc', ':lclose<CR>')
