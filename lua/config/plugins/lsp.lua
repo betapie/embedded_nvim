@@ -62,7 +62,11 @@ return {
     if vim.fn.executable('clangd') == 1 then
       require 'lspconfig'.clangd.setup {
         capabilities = capabilities,
-        on_attach = on_attach
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+          vim.keymap.set("n", "<leader>ls", ":ClangdSwitchSourceHeader<CR>",
+            { buffer = bufnr, desc = "Clangd switch source header" })
+        end
       }
     end
   end
