@@ -53,7 +53,5 @@ vim.keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>')
 vim.keymap.set('n', '<leader>x', ':.lua<CR>')
 vim.keymap.set('v', '<leader>x', ':lua<CR>')
 
-vim.keymap.set('n', ']b', ':bnext<CR>')
-vim.keymap.set('n', '[b', ':bprevious<CR>')
 vim.keymap.set('n', '<leader>c', ':bdelete<CR>')
 vim.keymap.set('n', '<leader>bc>', ':bufdo bwipeout')
