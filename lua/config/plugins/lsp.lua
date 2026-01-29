@@ -69,5 +69,24 @@ return {
         end
       }
     end
+    if vim.fn.executable('rust-analyzer') == 1 then
+      require 'lspconfig'.rust_analyzer.setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              allFeatures = true,
+            },
+            checkOnSave = {
+              command = "clippy", -- or "check" if you prefer speed over lints
+            },
+            diagnostics = {
+              enable = true, -- should be on by default
+            },
+          },
+        }
+      }
+    end
   end
 }
