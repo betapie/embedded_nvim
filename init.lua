@@ -1,3 +1,9 @@
+local min_neovim_version = '0.11.6';
+
+if not require('config.version').require_nvim(min_neovim_version) then
+  return
+end
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
