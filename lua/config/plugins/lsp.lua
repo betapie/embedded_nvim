@@ -26,13 +26,13 @@ return {
   config = function()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     if vim.fn.executable('lua-language-server') == 1 then
-      require 'lspconfig'.lua_ls.setup {
+      vim.lsp.config('lua_ls', {
         capabilities = capabilities,
         on_init = function(client)
           if client.workspace_folders then
             local path = client.workspace_folders[1].name
-            if path ~= vim.fn.stdpath('config') and (vim.loop.fs_stat(path .. '/.luarc.json')
-                  or vim.loop.fs_stat(path .. '/.luarc.jsonc')) then
+            if path ~= vim.fn.stdpath('config') and (vim.ui.fs_stat(path .. '/.luarc.json')
+                  or vim.ui.fs_stat(path .. '/.luarc.jsonc')) then
               return
             end
           end
@@ -57,20 +57,38 @@ return {
         settings = {
           Lua = {}
         }
-      }
+      })
+      vim.lsp.enable('lua_ls')
     end
     if vim.fn.executable('clangd') == 1 then
-      require 'lspconfig'.clangd.setup {
+      vim.lsp.config('clangd', {
         capabilities = capabilities,
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
-          vim.keymap.set("n", "<leader>ls", ":ClangdSwitchSourceHeader<CR>",
-            { buffer = bufnr, desc = "Clangd switch source header" })
+          vim.keymap.set("n", "<leader>ls", function()
+            vim.lsp.buf_request(
+              0,
+              "textDocument/switchSourceHeader",
+              { uri = vim.uri_from_bufnr(0) },
+              function(err, result)
+                if err then
+                  vim.notify(err.message or "Clangd switch failed", vim.log.levels.ERROR)
+                  return
+                end
+                if not result then
+                  vim.notify("No corresponding file found", vim.log.levels.WARN)
+                  return
+                end
+                vim.cmd.edit(vim.uri_to_fname(result))
+              end
+            )
+          end, { buffer = bufnr, desc = "Clangd switch source/header" })
         end
-      }
+      })
+      vim.lsp.enable('clangd')
     end
     if vim.fn.executable('rust-analyzer') == 1 then
-      require 'lspconfig'.rust_analyzer.setup {
+      vim.lsp.config('rust_analyzer', {
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
@@ -78,7 +96,8 @@ return {
             cargo = {
               allFeatures = true,
             },
-            checkOnSave = {
+            checkOnSave = true,
+            check = {
               command = "clippy", -- or "check" if you prefer speed over lints
             },
             diagnostics = {
@@ -86,7 +105,8 @@ return {
             },
           },
         }
-      }
+      })
+      vim.lsp.enable('rust_analyzer')
     end
   end
 }
