@@ -1,4 +1,4 @@
-if vim.fn.executable('node') == 0 then
+if vim.fn.executable('npm') == 0 then
   return
 end
 
@@ -9,7 +9,7 @@ return {
   keys = {
     { '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>', desc = 'Toggle Markdown preview' },
   },
-  build = "cd app && npm install",
+  build = "cd app && git update-index --assume-unchanged yarn.lock && npm install",
   config = function()
     vim.g.mkdp_auto_start = 0
     vim.g.mkdp_auto_close = 1
