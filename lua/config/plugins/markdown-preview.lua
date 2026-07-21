@@ -1,9 +1,6 @@
-if vim.fn.executable('npm') == 0 then
-  return
-end
-
 return {
   'iamcco/markdown-preview.nvim',
+  enabled = vim.fn.executable('npm') == 1,
   cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
   ft = { 'markdown' },
   keys = {
